@@ -1,15 +1,19 @@
+import { useContext } from "react";
 import { Button, Stack, TextField, Grow } from "@mui/material";
 import React, { ChangeEvent } from "react";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { EntriesContext } from "@/context/entries";
+import { UIContext } from "../../context/ui/UIContext";
 
 export const NewEntry = () => {
-  const [isAdding, setIsAdding] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
   const [touched, setTouched] = React.useState(false);
+  const { addNewEntry } = useContext(EntriesContext);
+  const { setIsAddingEntry, isAddingEntry } = useContext(UIContext);
 
-  const onHandleClick = React.useCallback(() => {
-    setIsAdding((prevState) => !prevState);
+  const onHandleClick = React.useCallback((value: boolean) => {
+    setIsAddingEntry(value);
   }, []);
 
   const onHandleChange = React.useCallback(
@@ -21,16 +25,19 @@ export const NewEntry = () => {
 
   const onSave = () => {
     if (!inputValue.length) return;
-    console.log(inputValue);
+    addNewEntry(inputValue);
+    setInputValue("");
+    setIsAddingEntry(false);
+    setTouched(false);
   };
 
   return (
     <Stack spacing={2} padding="10px">
-      {isAdding ? (
+      {isAddingEntry ? (
         <Grow
-          in={isAdding}
+          in={isAddingEntry}
           style={{ transformOrigin: "0 0 0" }}
-          {...(isAdding ? { timeout: 500 } : {})}
+          {...(isAddingEntry ? { timeout: 500 } : {})}
         >
           <Stack width="100%" justifyContent="center" alignItems="center">
             <TextField
@@ -45,8 +52,12 @@ export const NewEntry = () => {
               onChange={onHandleChange}
               onBlur={() => setTouched(true)}
             />
-            <Stack direction="row" spacing={2}>
-              <Button variant="text" onClick={onHandleClick} color="error">
+            <Stack direction="row" spacing={2} mt={2}>
+              <Button
+                variant="text"
+                onClick={() => onHandleClick(false)}
+                color="error"
+              >
                 Cancelar
               </Button>
               <Button
@@ -65,7 +76,7 @@ export const NewEntry = () => {
           startIcon={<AddCircleOutlineOutlinedIcon />}
           fullWidth
           variant="outlined"
-          onClick={onHandleClick}
+          onClick={() => onHandleClick(true)}
         >
           Agregar tarea
         </Button>

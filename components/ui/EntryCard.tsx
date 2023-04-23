@@ -1,5 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, DragEvent, useContext } from "react";
 import { Entry } from "../../interfaces";
+import { UIContext } from "../../context/ui/UIContext";
 import {
   Card,
   CardActionArea,
@@ -13,12 +14,26 @@ interface PropsEntryCard {
 }
 
 export const EntryCard: FC<PropsEntryCard> = ({ entry }) => {
+  const { startDragging, endDragging } = useContext(UIContext);
+
+  const onDragStart = (event: DragEvent) => {
+    event.dataTransfer.setData("text", entry._id);
+    startDragging();
+  };
+
+  const onDragEnd = () => {
+    endDragging();
+  };
+
   return (
     <Card
       sx={{
         mb: 1,
         padding: "1px 5px",
       }}
+      draggable
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
     >
       <CardActionArea>
         <CardContent>

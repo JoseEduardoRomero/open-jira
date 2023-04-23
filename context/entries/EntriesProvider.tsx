@@ -55,6 +55,7 @@ export const EntriesProvider = ({
     <EntriesContext.Provider
       value={{
         ...state,
+        addNewEntry,
       }}
     >
       {children}
