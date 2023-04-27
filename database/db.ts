@@ -14,7 +14,7 @@ const mongoConection = {
 
 export const connect = async () => {
   if (mongoConection.isConected) {
-    console.log("Ya estamos conectados");
+    console.log("Ya estabamos conectados");
     return;
   }
   if (mongoose.connections.length) {
@@ -25,13 +25,14 @@ export const connect = async () => {
     }
     await mongoose.disconnect();
   }
-  await mongoose.connect("");
+  await mongoose.connect(process.env.MONGO_URL || "");
   mongoConection.isConected = 1;
-  console.log("Conectado a mongo db", "");
+  console.log("Conectado a mongo db", process.env.MONGO_URL);
 };
 
 export const disconnect = async () => {
-  if (mongoConection.isConected !== 0) return;
+  if (process.env.NODE_ENV === "development") return;
+  if (mongoConection.isConected === 0) return;
   await mongoose.disconnect();
   console.log("Desconectado de MongoDB");
 };
