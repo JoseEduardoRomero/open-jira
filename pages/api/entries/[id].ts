@@ -9,6 +9,19 @@ type Data =
     }
   | IEntry;
 
+const getEntry = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { id } = req.body;
+  await db.connect();
+  const entryFind = await Entry.findById(id);
+  await db.disconnect();
+  if (!entryFind) {
+    return res.status(404).json({
+      message: "Entry not found",
+    });
+  }
+  return res.status(204).json(entryFind);
+};
+
 const updateEntry = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
   await db.connect();
@@ -55,6 +68,8 @@ export default function handler(
   switch (req.method) {
     case "PUT":
       return updateEntry(req, res);
+    case "GET":
+      return getEntry(req, res);
     default:
       return res.status(400).json({
         message: "Metodo no existe",
