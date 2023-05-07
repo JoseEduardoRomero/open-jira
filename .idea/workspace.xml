@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce07cfc2-1951-48c8-af2f-372db475517a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_document.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/Home.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Entry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/models/Entry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/entries/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/entries/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +51,7 @@
       <workItem from="1677804811256" duration="651000" />
       <workItem from="1678325467095" duration="2522000" />
       <workItem from="1680022464871" duration="7000" />
+      <workItem from="1683050335004" duration="326000" />
     </task>
     <servers />
   </component>
