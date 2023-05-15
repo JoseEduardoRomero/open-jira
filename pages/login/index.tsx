@@ -14,6 +14,7 @@ import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlin
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import Logo from "../../assets/OpenJira.png";
+import Slide1 from "../../assets/Slide1.png";
 
 const LoginPage: NextPage = () => {
   const [email, setEmail] = useState<String>("");
@@ -46,6 +47,7 @@ const LoginPage: NextPage = () => {
       p={8}
       maxWidth="1500px"
       margin="auto"
+      bgcolor="#F0F3F9"
     >
       <Stack
         direction="row"
@@ -66,7 +68,24 @@ const LoginPage: NextPage = () => {
           alignItems="center"
           justifyContent="center"
         >
-          Hola
+          <Image
+            src={Slide1}
+            alt="Slide 1"
+            width={600}
+            height={500}
+            style={{
+              objectFit: "contain",
+            }}
+          />
+          <Stack spacing={2} alignItems="center" justifyContent="center">
+            <Typography variant="h5" fontWeight="bold" color="#fff">
+              Fácil navegación
+            </Typography>
+            <Typography maxWidth="400px" textAlign="center" color="#fff">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla
+              voluptate vero
+            </Typography>
+          </Stack>
         </Stack>
         <Stack
           flexBasis={1}
@@ -74,6 +93,7 @@ const LoginPage: NextPage = () => {
           alignItems="center"
           justifyContent="center"
           p={2}
+          position="relative"
         >
           <Stack>
             <Image
@@ -87,7 +107,7 @@ const LoginPage: NextPage = () => {
             />
           </Stack>
           <Stack alignItems="center" justifyContent="center" spacing={2}>
-            <Typography variant="h4">Open Jira</Typography>
+            <Typography variant="h4">Bienvenido</Typography>
             <Typography
               variant="body1"
               textAlign="center"
@@ -151,6 +171,14 @@ const LoginPage: NextPage = () => {
             <Button fullWidth variant="contained">
               Log In
             </Button>
+          </Stack>
+          <Stack position="absolute" bottom="20px">
+            <Typography>
+              No tienes cuenta aun?{" "}
+              <Link href="#" underline="hover" fontSize="1rem">
+                Da click aquí
+              </Link>
+            </Typography>
           </Stack>
         </Stack>
       </Stack>
