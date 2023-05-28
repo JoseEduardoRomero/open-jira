@@ -34,7 +34,7 @@ export const EntryList = ({ status }: PropsEntryList) => {
 
   return (
     <div
-      className={isDragging ? styles.dragging : ""}
+      className={isDragging ? styles?.dragging : ""}
       onDrop={onDropEntry}
       onDragOver={allowDrop}
     >

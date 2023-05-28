@@ -1,51 +1,49 @@
+import { useMemo } from "react";
 import type { NextPage } from "next";
-import { Card, CardContent, CardHeader, Grid, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import { Layout } from "@/components/layouts";
-import { EntryList } from "@/components/ui";
-import { NewEntry } from "@/components/ui";
+import Column from "@/components/Column";
+
+interface Columns {
+  title: string;
+  status: "pending" | "in-progress" | "finished";
+  canCreateNewEntry: boolean;
+}
 
 const HomePage: NextPage = () => {
+  const columns: Columns[] = useMemo(
+    () => [
+      {
+        title: "Pendientes",
+        status: "pending",
+        canCreateNewEntry: true,
+      },
+      {
+        title: "En progreso",
+        status: "in-progress",
+        canCreateNewEntry: false,
+      },
+      {
+        title: "Completadas",
+        status: "finished",
+        canCreateNewEntry: false,
+      },
+    ],
+    []
+  );
   return (
     <Layout title="Home -Open Jira">
       <Stack mt={2}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={4}>
-            <Card
-              sx={{
-                height: "calc(100vh - 100px)",
-              }}
-            >
-              <CardHeader title="Pendientes" />
-              <NewEntry />
-              <CardContent>
-                <EntryList status="pending" />
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Card
-              sx={{
-                height: "calc(100vh - 100px)",
-              }}
-            >
-              <CardHeader title="En progreso" />
-              <CardContent>
-                <EntryList status="in-progress" />
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Card
-              sx={{
-                height: "calc(100vh - 100px)",
-              }}
-            >
-              <CardHeader title="Completadas" />
-              <CardContent>
-                <EntryList status="finished" />
-              </CardContent>
-            </Card>
-          </Grid>
+          {columns.map((column) => (
+            <Grid item xs={12} sm={4} key={column?.status}>
+              <Column>
+                <Column.Header title={column.title} />
+                {column.canCreateNewEntry && <Column.NewEntry />}
+                <Column.Content status={column.status} />
+              </Column>
+            </Grid>
+          ))}
         </Grid>
       </Stack>
     </Layout>

@@ -1,6 +1,6 @@
 import React, { FC, DragEvent, useContext } from "react";
-import { Entry } from "../../interfaces";
-import { UIContext } from "../../context/ui/UIContext";
+import { Entry } from "@/interfaces";
+import { UIContext } from "@/context/ui/UIContext";
 import {
   Card,
   CardActionArea,
