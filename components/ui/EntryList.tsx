@@ -20,15 +20,23 @@ export const EntryList = ({ status }: PropsEntryList) => {
     [entries]
   );
 
+  // Evento que ocurre cuando una selección que se puede arrastrar se coloca en un objetivo.
   const allowDrop = (event: DragEvent<HTMLDivElement>) => {
+    // Hace que el navegador no cominece a recargar, evitamos este comportamiento
     event.preventDefault();
   };
 
+  // Evento que ocurre cuando una selección arrastrable se arrastra sobre un destino
   const onDropEntry = (event: DragEvent<HTMLDivElement>) => {
+    // Extraemos el id que previamente seteamos en el objeto que vamos a mover
     const id = event.dataTransfer.getData("text");
+    // Buscamos el elemento dentro del array de entradas
     const entry = entries.find((e) => e._id === id)!;
+    // Modificamos el estatus de la tarjeta segun la columna donde estemos
     entry.status = status;
+    // Mandamos a la base de datos para poder actualizar
     updateEntry(entry);
+    // Modificamos estilos
     endDragging();
   };
 

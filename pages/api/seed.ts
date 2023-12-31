@@ -6,6 +6,7 @@ type Data = {
   message: string;
 };
 
+// Funcion para hacer test y llenar nuestra base de datos.
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>

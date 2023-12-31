@@ -16,14 +16,6 @@ const UI_INITIAL_STATE: UIState = {
 export const UIProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(uiReducer, UI_INITIAL_STATE);
 
-  const openSideMenu = useCallback(() => {
-    dispatch({ type: "UI - Open Sidebar" });
-  }, []);
-
-  const closeSideMenu = useCallback(() => {
-    dispatch({ type: "UI - Close Sidebar" });
-  }, []);
-
   const setIsAddingEntry = useCallback((value: boolean) => {
     dispatch({ type: "UI - Add Entry", payload: value });
   }, []);
@@ -40,8 +32,6 @@ export const UIProvider = ({ children }: { children: React.ReactNode }) => {
     <UIContext.Provider
       value={{
         ...state,
-        openSideMenu,
-        closeSideMenu,
         setIsAddingEntry,
         startDragging,
         endDragging,

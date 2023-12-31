@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 import type { NextPage } from "next";
 import { Grid, Stack } from "@mui/material";
 import { Layout } from "@/components/layouts";
@@ -11,6 +11,7 @@ interface Columns {
 }
 
 const HomePage: NextPage = () => {
+  // Columnas por defecto
   const columns: Columns[] = useMemo(
     () => [
       {
@@ -35,9 +36,9 @@ const HomePage: NextPage = () => {
     <Layout title="Home -Open Jira">
       <Stack mt={2}>
         <Grid container spacing={2}>
-          {columns.map((column) => (
+          {columns?.map((column) => (
             <Grid item xs={12} sm={4} key={column?.status}>
-              <Column>
+              <Column color="#303030">
                 <Column.Header title={column.title} />
                 {column.canCreateNewEntry && <Column.NewEntry />}
                 <Column.Content status={column.status} />
@@ -50,4 +51,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-export default HomePage;
+export default memo(HomePage);

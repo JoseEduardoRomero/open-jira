@@ -19,7 +19,6 @@ export const Layout: FC<LayoutProps> = ({ title = "Open Jira", children }) => {
         <title>{title}</title>
       </Head>
       <Navbar />
-      <Sidebar />
 
       <Box padding="10px 20px">{children}</Box>
     </Box>

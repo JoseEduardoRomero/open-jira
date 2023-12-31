@@ -16,12 +16,18 @@ interface PropsEntryCard {
 export const EntryCard: FC<PropsEntryCard> = ({ entry }) => {
   const { startDragging, endDragging } = useContext(UIContext);
 
+  // Evento ocurre cuando el usuario comienza a arrastrar una selección .
   const onDragStart = (event: DragEvent) => {
+    // Seteamos el id de la tarjeta en el objeto
     event.dataTransfer.setData("text", entry._id);
+    // Modificamos la variable para poder cambiar estilos
     startDragging();
   };
 
+  // Evento que ocurre cuanod terminamos de mover la tarjeta
   const onDragEnd = () => {
+    // Funcion para cambiar el estado de la variable, isDragging, que se utiliza para poder
+    // Cambiar estilos
     endDragging();
   };
 
